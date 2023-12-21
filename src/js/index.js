@@ -7,6 +7,8 @@ const input = document.getElementById("movie-query")
 
 const searchResults = document.getElementById("search-results")
 
+const watchlist = JSON.parse(localStorage.getItem("watchlist"))
+
 // if clicked on the "search" button
 form.addEventListener("submit", async function(e) {
     e.preventDefault() // prevent the site from refreshing
@@ -59,8 +61,6 @@ form.addEventListener("submit", async function(e) {
     searchResults.innerHTML = html
 })
 
-const watchlist = JSON.parse(localStorage.getItem("watchlist"))
-
 document.addEventListener("click", function(e) {
 
     // if the "Add to Watchlist" button is clicked
@@ -78,6 +78,5 @@ document.addEventListener("click", function(e) {
         // save the movie to be able to render it to Watchlist DOM
         localStorage.setItem("watchlist", JSON.stringify(watchlist))
     }
-    // if the "Remove from Watchlist" button is clicked
-        // remove the movie from the Watchlist
+    
 })

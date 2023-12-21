@@ -107,8 +107,7 @@ form > button {
 .watchlist {
     background-color: #FFF;
     width: 100%;
-    height: calc(100vh - 13rem);
-    max-height: 100%; /* come back to later */
+    min-height: calc(100vh - 13rem);
     padding: 2.75em;
 
 }
@@ -117,7 +116,6 @@ form > button {
     display: flex;
     gap: 1.31em;
     padding: 1.29em 0;
-    /* border-bottom: 1.5px solid #E5E7EB; */
 }
 
 .movie:not(:last-child) {
