@@ -38,11 +38,17 @@ form.addEventListener("submit", async function(e) {
                 <div class="movie-container">
                     <div class="movie-duration">${movie.Runtime}</div>
                     <div class="movie-genres">${movie.Genre}</div>
-                    <button type="button" id="watchlist-btn" class="watchlist-btn">
+                    <button type="button" class="watchlist-btn" data-watchlist="add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM9 5C9 4.44772 8.55228 4 8 4C7.44772 4 7 4.44772 7 5V7H5C4.44772 7 4 7.44771 4 8C4 8.55228 4.44772 9 5 9H7V11C7 11.5523 7.44772 12 8 12C8.55228 12 9 11.5523 9 11V9H11C11.5523 9 12 8.55228 12 8C12 7.44772 11.5523 7 11 7H9V5Z" fill="#111827"/>
                         </svg>
                         Watchlist
+                    </button>
+                    <button type="button" class="watchlist-btn" data-watchlist="remove" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM5 7C4.44772 7 4 7.44772 4 8C4 8.55228 4.44772 9 5 9H11C11.5523 9 12 8.55229 12 8C12 7.44772 11.5523 7 11 7H5Z" fill="#111827"/>
+                        </svg>
+                        Remove
                     </button>
                 </div>
                 <div class="movie-desc">${movie.Plot}</div>
@@ -51,4 +57,27 @@ form.addEventListener("submit", async function(e) {
         `
     }
     searchResults.innerHTML = html
+})
+
+const watchlist = JSON.parse(localStorage.getItem("watchlist"))
+
+document.addEventListener("click", function(e) {
+
+    // if the "Add to Watchlist" button is clicked
+    if (e.target.dataset.watchlist === "add") {
+        // hide this button and replace it with "Remove from Watchlist" button
+        e.target.style.display = "none"
+        e.target.nextElementSibling.style.display = "flex"
+        // get that movie's data
+        const movie = e.target.parentElement.parentElement.parentElement.outerHTML
+        // if the movie isn't already in the Watchlist
+        if (!watchlist.includes(movie)) {
+            // add it to it
+            watchlist.push(movie)
+        }
+        // save the movie to be able to render it to Watchlist DOM
+        localStorage.setItem("watchlist", JSON.stringify(watchlist))
+    }
+    // if the "Remove from Watchlist" button is clicked
+        // remove the movie from the Watchlist
 })

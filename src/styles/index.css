@@ -40,12 +40,13 @@ h1 {
     letter-spacing: -0.12038rem;
 }
 
-h4 {
+header > a {
     color: #FFF;
     text-align: right;
     font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.42;
+    text-decoration: none;
 }
 
 /* ///////////// SEARCH BAR /////////////// */
@@ -100,9 +101,10 @@ form > button {
     cursor: pointer;
 }
 
-/* /////////// SEARCH RESULTS ///////////// */
+/* /////////// SEARCH/WATCHLIST RESULTS ///////////// */
 
-.search-results {
+.search-results,
+.watchlist {
     background-color: #FFF;
     width: 100%;
     height: calc(100vh - 13rem);
@@ -179,7 +181,8 @@ form > button {
     max-width: 8.3125rem;
 }
 
-.watchlist-btn {
+.watchlist-btn,
+.remove-btn {
     display: flex;
     align-items: center;
     gap: .31em;
