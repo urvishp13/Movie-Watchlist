@@ -29,6 +29,22 @@ header {
     height: 13rem;
     background: url("../assets/images/background-image.png");
     background-position: 50% 30%;
+    background-size: cover;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+header > * {
+    z-index: 100;
 }
 
 h1 {
