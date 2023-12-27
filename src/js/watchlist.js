@@ -7,6 +7,5 @@ const movies = localStorage.getItem("watchlist") ? JSON.parse(localStorage.getIt
 
 if (movies) { // if there is a movie to be added to the Watchlist
     watchlist.style.display = "block" // restructure the way the movies are displayed on the page
+    watchlist.innerHTML = movies.reverse().join("") // add all movies to the Watchlist in reverse order (meaning last-to-be-added is on the top)
 }
-
-watchlist.innerHTML = movies.reverse().join("") // add all movies to the Watchlist in reverse order (meaning last-to-be-added is on the top)
