@@ -121,11 +121,39 @@ form > button {
 
 .search-results,
 .watchlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #FFF;
     width: 100%;
     min-height: calc(100vh - 13rem);
     padding: 2.75em;
+}
 
+.default-text > h2,
+.zero-search-results {
+    color: #DFDDDD;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.11; /* 111.111% */
+}
+
+.default-text,
+.zero-search-results {
+    text-align: center;
+}
+
+.watchlist > .default-text > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3em;
+    color: #363636;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.43; /* 142.857% */
+    text-decoration: none;
 }
 
 .movie {

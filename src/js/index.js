@@ -7,7 +7,11 @@ const input = document.getElementById("movie-query")
 
 const searchResults = document.getElementById("search-results")
 
-const watchlist = JSON.parse(localStorage.getItem("watchlist"))
+let watchlist = JSON.parse(localStorage.getItem("watchlist"))
+// if the Watchlist hasn't been created yet
+if (!watchlist) {
+    watchlist = []
+}
 
 // if clicked on the "search" button
 form.addEventListener("submit", async function(e) {
@@ -16,7 +20,14 @@ form.addEventListener("submit", async function(e) {
     // first, get the movies
     const res = await fetch(`${API}s=${input.value.toLowerCase()}`)
     const allMovies = await res.json()
-    // then, get the movies' IDs to actually be able to get the JSON filled with the data needed. The first fetch doesn't provide that data, but
+    // if zero movies found
+    if (allMovies.Error) {
+        // add such information to the DOM
+        document.getElementById("default-text").style.display = "none"
+        document.getElementById("zero-search-results").style.display = "block"
+        return
+    }
+    // if movies found, get the movies' IDs to actually be able to get the JSON filled with the data needed. The first fetch doesn't provide that data, but
     // it is done so can get to the IDs of the movies
     const movieIDs = allMovies.Search.map(movie => movie.imdbID)
     let html = ""
